@@ -1,0 +1,72 @@
+#creates the node class that will be used to create the linked list
+class Node:
+    def __init__(self, data):
+        self.data = data  
+        self.next = None  
+#creates the linked list class that will be used to create the linked list and perform operations on it
+class LinkedList:
+    def __init__(self):
+        self.head = None
+ #creates the insert at begin function that allows the user to insert a name at the beginning of the linked list          
+    def insertAtBegin(self, data):
+        newNode = Node(data)
+        newNode.next = self.head  
+        self.head = newNode
+#creates the insert at index function that allows the user to insert a name at a specific index in the linked list
+    def insertAtIndex(self, data, index):
+        if index == 0:
+            self.insertAtBegin(data)
+            return
+       
+        newNode = Node(data)  
+        currentNode = self.head  
+        position = 0
+       
+        while currentNode is not None and position < index - 1:
+            position += 1
+            currentNode = currentNode.next
+       
+        if currentNode is None:
+            print("Index not present.")  
+            return
+       
+        newNode.next = currentNode.next  
+        currentNode.next = newNode  
+#creates the insert at end function that allows the user to insert a name at the end of the linked list
+    def insertAtEnd(self, data):
+        newNode = Node(data)  
+        if self.head is None:  
+            self.head = newNode
+            return
+       
+        currentNode = self.head  
+        while currentNode.next:
+            currentNode = currentNode.next
+       
+        currentNode.next = newNode
+#creates the print list function that allows the user to print the linked list with the names of the students in the class
+    def printList(self):
+        currentNode = self.head  
+        while currentNode:  
+            print(currentNode.data, end=" -> ")  
+            currentNode = currentNode.next  
+        print("None")  
+
+
+classList = LinkedList()
+#names for class to be added to the linked list
+classList.insertAtBegin("Andrew")
+classList.insertAtIndex("Dylan", 1)
+classList.insertAtIndex("Martins", 2)
+classList.insertAtIndex("Alex", 3)
+classList.insertAtIndex("Abraham", 4)
+classList.insertAtIndex("Chris", 5)
+classList.insertAtIndex("Brandon", 6)
+classList.insertAtIndex("Tyler", 7)
+classList.insertAtIndex("Wes", 8)
+classList.insertAtEnd("Caleb")
+#prints the linked list with the names of the students in the class
+classList.printList()
+
+
+
